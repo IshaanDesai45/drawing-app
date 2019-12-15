@@ -11,19 +11,18 @@ var isDrawing = false ;
  var increasing =true;
 var i = 0;
 // var colors =["red","blue"];
- var colors =["#0008FF","#8000FF","#FF007B","#FFE600","#FF0059","#FFB700"]
+// var colors =["red","blue"];
+ // var colors =["#0008FF","#8000FF","#FF007B","#FFE600","#FF0059","#FFB700"]
+var hue =1;
+//  var color = `hsl(${hue},100%,50%)`;
 
- var color = colors[i];
-
-window.setInterval(update_color,1500);
-window.setInterval(update_radius,20);
+// window.setInterval(update_color,10);
+// window.setInterval(update_radius,20);
 function update_color(){
-	i = i%colors.length  ;
-	color = colors[i];
-	i++;
-	console.log(color);
-}
+	hue++;
+	// console.log(color);
 
+}
 var mouse ={
 	x:null,
 	y:null
@@ -51,12 +50,14 @@ window.addEventListener("mousemove",function(event){
 	// gradient.addColorStop(1, 'black');	
 	c.beginPath();
 	c.globalCompositeOperation= "lighter";
-	c.fillStyle = color;
+	c.fillStyle = `hsl(${hue},100%,50%)`;
 	c.lineWidth = 5;
 	c.arc(event.x,event.y,radius,0,Math.PI*2);
 	c.fill();
 	c.stokeStyle ="black";
 	c.stroke();
+	update_color();
+	update_radius();
 
 	}
 	
